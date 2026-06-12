@@ -26,5 +26,9 @@
     "tailwind",
     "css-variables"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zainalhassan/design-system.git"
+  }
 }
