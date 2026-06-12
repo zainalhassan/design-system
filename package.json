@@ -1,0 +1,30 @@
+{
+  "name": "@zainalhassan/design-system",
+  "version": "0.1.0",
+  "description": "Stack-agnostic design tokens and themes. Transit 6.0-inspired theme included.",
+  "private": false,
+  "type": "module",
+  "files": [
+    "dist",
+    "themes",
+    "specs"
+  ],
+  "exports": {
+    "./transit/variables.css": "./dist/transit/variables.css",
+    "./transit/tailwind": "./dist/transit/tailwind.preset.js",
+    "./transit/tokens.json": "./dist/transit/tokens.json",
+    "./themes/*": "./themes/*"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "npx serve preview -p 3456"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "transit",
+    "tailwind",
+    "css-variables"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transit theme preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../dist/transit/variables.css" />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        min-height: 100vh;
+        padding: var(--spacing-6);
+        background: var(--color-background-subtle);
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-4);
+        margin-bottom: var(--spacing-8);
+      }
+      h1 {
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-extrabold);
+        letter-spacing: var(--font-letterSpacing-tight);
+      }
+      .subtitle { color: var(--color-foreground-muted); margin-top: var(--spacing-1); }
+      .toggle {
+        border: 1px solid var(--color-border);
+        background: var(--color-card);
+        border-radius: var(--radius-button);
+        padding: var(--spacing-2) var(--spacing-4);
+        font: inherit;
+        font-weight: var(--font-weight-semibold);
+        cursor: pointer;
+      }
+      .grid {
+        display: grid;
+        gap: var(--spacing-6);
+        max-width: 960px;
+      }
+      @media (min-width: 720px) {
+        .grid { grid-template-columns: 1fr 1fr; }
+        .grid .full { grid-column: 1 / -1; }
+      }
+      .section-title {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+        text-transform: uppercase;
+        letter-spacing: var(--font-letterSpacing-wide);
+        color: var(--color-foreground-muted);
+        margin-bottom: var(--spacing-3);
+      }
+      .eta-scroll {
+        display: flex;
+        gap: var(--spacing-3);
+        overflow-x: auto;
+        padding-bottom: var(--spacing-2);
+      }
+      .eta-card {
+        flex: 0 0 220px;
+        overflow: hidden;
+      }
+      .eta-route {
+        height: var(--component-eta-card-header-height);
+        display: flex;
+        align-items: center;
+        padding: 0 var(--spacing-4);
+        color: white;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-sm);
+      }
+      .eta-body {
+        padding: var(--spacing-4);
+        background: var(--color-card);
+      }
+      .eta-meta {
+        margin-top: var(--spacing-2);
+        font-size: var(--font-size-xs);
+        color: var(--color-foreground-muted);
+      }
+      .selected {
+        outline: 3px solid var(--color-ring);
+        outline-offset: 2px;
+      }
+      .route-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2);
+      }
+      .chip {
+        padding: var(--spacing-1) var(--spacing-3);
+        border-radius: var(--radius-chip);
+        color: white;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+      }
+      .buttons { display: flex; flex-wrap: wrap; gap: var(--spacing-3); }
+      .btn-secondary {
+        background: var(--color-brand-secondary);
+        color: var(--color-brand-secondary-foreground);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-3);
+      }
+      .stat {
+        background: var(--color-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-4);
+        box-shadow: var(--shadow-sm);
+      }
+      .stat-value {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-extrabold);
+      }
+      .stat-label {
+        font-size: var(--font-size-sm);
+        color: var(--color-foreground-muted);
+      }
+      .alert {
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-4);
+        font-weight: var(--font-weight-semibold);
+        color: #111;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div>
+        <h1>Transit theme</h1>
+        <p class="subtitle">Bigger, bolder, rounder — inspired by Transit 6.0</p>
+      </div>
+      <button class="toggle" id="theme-toggle" type="button">Toggle dark mode</button>
+    </header>
+
+    <div class="grid">
+      <section class="full">
+        <p class="section-title">ETA cards</p>
+        <div class="eta-scroll">
+          <article class="eta-card transit-eta-card selected">
+            <div class="eta-route" style="background: var(--color-route-blue)">42 · Downtown</div>
+            <div class="eta-body">
+              <div class="transit-eta-time">3</div>
+              <div style="font-weight:600">min</div>
+              <p class="eta-meta">On time · Not crowded</p>
+            </div>
+          </article>
+          <article class="eta-card transit-eta-card">
+            <div class="eta-route" style="background: var(--color-route-orange)">7 · Express</div>
+            <div class="eta-body">
+              <div class="transit-eta-time">12</div>
+              <div style="font-weight:600">min</div>
+              <p class="eta-meta">⚠️ Delay · Moderate crowding</p>
+            </div>
+          </article>
+          <article class="eta-card transit-eta-card">
+            <div class="eta-route" style="background: var(--color-route-green)">Green Line</div>
+            <div class="eta-body">
+              <div class="transit-eta-time">18</div>
+              <div style="font-weight:600">min</div>
+              <p class="eta-meta">♿ Step-free access</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <p class="section-title">Buttons</p>
+        <div class="buttons">
+          <button class="transit-btn transit-btn-primary" type="button">Plan trip</button>
+          <button class="transit-btn btn-secondary" type="button">GO</button>
+        </div>
+      </section>
+
+      <section>
+        <p class="section-title">Stats</p>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value" style="color: var(--color-brand-primary)">3</div>
+            <div class="stat-label">Active trips</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Saved lines</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">98%</div>
+            <div class="stat-label">On-time rate</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="full">
+        <p class="section-title">Route colours</p>
+        <div class="route-chips">
+          <span class="chip" style="background: var(--color-route-red)">Red</span>
+          <span class="chip" style="background: var(--color-route-orange)">Orange</span>
+          <span class="chip" style="background: var(--color-route-yellow); color:#111">Yellow</span>
+          <span class="chip" style="background: var(--color-route-green)">Green</span>
+          <span class="chip" style="background: var(--color-route-teal)">Teal</span>
+          <span class="chip" style="background: var(--color-route-blue)">Blue</span>
+          <span class="chip" style="background: var(--color-route-purple)">Purple</span>
+          <span class="chip" style="background: var(--color-route-pink)">Pink</span>
+        </div>
+      </section>
+
+      <section class="full">
+        <p class="section-title">Alerts</p>
+        <div style="display:grid; gap: var(--spacing-3);">
+          <div class="alert" style="background: var(--color-semantic-warning)">Service alert — minor delays on Line 42</div>
+          <div class="alert" style="background: var(--color-semantic-destructive); color: white">Emergency — service suspended</div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const btn = document.getElementById("theme-toggle");
+      btn.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+      });
+    </script>
+  </body>
+</html>
