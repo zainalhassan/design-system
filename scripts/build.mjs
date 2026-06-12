@@ -91,11 +91,6 @@ function lightDarkCss(entries) {
     ["border", "color-light-border"],
     ["border-strong", "color-light-border-strong"],
     ["ring", "color-light-ring"],
-    ["brand-primary", "color-brand-primary"],
-    ["brand-primary-hover", "color-brand-primary-hover"],
-    ["brand-primary-foreground", "color-brand-primary-foreground"],
-    ["brand-secondary", "color-brand-secondary"],
-    ["brand-secondary-foreground", "color-brand-secondary-foreground"],
   ];
 
   const darkSemanticAliases = [
