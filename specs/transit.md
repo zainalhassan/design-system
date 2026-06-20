@@ -48,7 +48,16 @@ The signature Transit 6.0 pattern — selectable departure cards with route colo
 | Time size | `--component-eta-card-time-size` |
 | Padding | `--component-eta-card-padding-*` |
 
-**States:** default, selected (ring: `--color-ring`), disabled (opacity 0.5)
+**States:** default, selected (`.is-selected`), disabled (`.is-disabled`)
+
+**Structure:**
+
+| Class | Role |
+|-------|------|
+| `.transit-eta-card` | Card shell |
+| `.transit-eta-card__header` | Route-colour bar (white text) |
+| `.transit-eta-card__body` | Hero value + label |
+| `.transit-eta-card__meta` | Muted auxiliary row |
 
 **Stack mapping:**
 
@@ -71,6 +80,34 @@ Rounded, medium height, semibold label.
 Classes: `.transit-btn` + `.transit-btn-primary`
 
 ### Route chip
+
+Generated class: `.route-chip` — pill badge with route colour background.
+
+### Mobile shell
+
+Transit 6.0 detail screens: **hero stays visible**, secondary content scrolls beneath.
+
+| Class | Mobile | Desktop |
+|-------|--------|---------|
+| `.transit-mobile-shell` | Flex column, viewport height | Block flow |
+| `.transit-mobile-hero` | Sticky top, capped height | Normal |
+| `.transit-mobile-scroll` | Scrollable body | Normal |
+| `.transit-desktop-grid` | Hidden | Grid for side-by-side panels |
+
+Tokens: `--layout-hero-max-height`, `--layout-bottom-nav-height`, `--layout-safe-area-bottom`
+
+### Bottom navigation
+
+Mobile primary nav pattern:
+
+| Class | Role |
+|-------|------|
+| `.transit-bottom-nav` | Fixed bar with blur backdrop |
+| `.transit-bottom-nav__item` | Tab link |
+| `.transit-bottom-nav__item.is-active` | Current section |
+| `.transit-bottom-nav__icon` | 22px icon slot |
+
+### Route chip (manual CSS reference)
 
 Pill badge using route palette.
 
